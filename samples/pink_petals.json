@@ -38,7 +38,7 @@
           "when": { "flower_amount": ["1", "2", "3", "4"] },
           "model": {
             "type": "normal",
-            "models": ["minecraft:block/pink_petals_1"]
+            "model": "minecraft:block/pink_petals_1"
           }
         },
         {
@@ -46,7 +46,7 @@
           "when": { "flower_amount": ["2", "3", "4"] },
           "model": {
             "type": "normal",
-            "models": ["minecraft:block/pink_petals_2"]
+            "model": "minecraft:block/pink_petals_2"
           }
         },
         {
@@ -54,7 +54,7 @@
           "when": { "flower_amount": ["3", "4"] },
           "model": {
             "type": "normal",
-            "models": ["minecraft:block/pink_petals_3"]
+            "model": "minecraft:block/pink_petals_3"
           }
         },
         {
@@ -62,7 +62,7 @@
           "when": { "flower_amount": ["4"] },
           "model": {
             "type": "normal",
-            "models": ["minecraft:block/pink_petals_4"]
+            "model": "minecraft:block/pink_petals_4"
           }
         }
       ]

@@ -39,13 +39,9 @@
       "type": "object",
       "properties": {
         "type": { "enum": ["normal"] },
-        "models": {
-          "type": "array",
-          "items": { "type": "string" },
-          "minItems": 1
-        }
+        "model": { "type": "string" }
       },
-      "required": ["type", "models"]
+      "required": ["type", "model"]
     },
     "ConditionModel": {
       "type": "object",

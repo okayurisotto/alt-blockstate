@@ -5,22 +5,22 @@
     "models": [
       {
         "type": "normal",
-        "models": ["minecraft:block/dirt"],
+        "model": "minecraft:block/dirt",
         "options": { "y": 0 }
       },
       {
         "type": "normal",
-        "models": ["minecraft:block/dirt"],
+        "model": "minecraft:block/dirt",
         "options": { "y": 90 }
       },
       {
         "type": "normal",
-        "models": ["minecraft:block/dirt"],
+        "model": "minecraft:block/dirt",
         "options": { "y": 180 }
       },
       {
         "type": "normal",
-        "models": ["minecraft:block/dirt"],
+        "model": "minecraft:block/dirt",
         "options": { "y": 270 }
       }
     ]

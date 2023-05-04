@@ -34,10 +34,10 @@ const convertModel = (
   if (input.type === "normal") {
     return [
       {
-        apply: input.models.map((model) => ({
-          model,
+        apply: {
+          model: input.model,
           ...mergeOptions(input.options ?? {}, options ?? {}),
-        })),
+        },
         when: convertCondition(condition),
       },
     ];

@@ -32,7 +32,7 @@ export type RefModel = {
 
 export type NormalModel = {
   type: "normal";
-  models: string[];
+  model: string;
 };
 
 export type ConditionModel = {
