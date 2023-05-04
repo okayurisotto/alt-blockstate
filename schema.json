@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "Model": {
+      "allOf": [
+        {
+          "oneOf": [
+            { "$ref": "#/definitions/RefModel" },
+            { "$ref": "#/definitions/NormalModel" },
+            { "$ref": "#/definitions/ConditionModel" },
+            { "$ref": "#/definitions/AllOfModel" },
+            { "$ref": "#/definitions/OneOfModel" }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": { "options": { "$ref": "#/definitions/ModelOptions" } }
+        }
+      ]
+    },
+    "ModelOptions": {
+      "type": "object",
+      "properties": {
+        "x": { "enum": [0, 90, 180, 270] },
+        "y": { "enum": [0, 90, 180, 270] },
+        "z": { "enum": [0, 90, 180, 270] },
+        "uvlock": { "type": "boolean" }
+      }
+    },
+    "RefModel": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["ref"] },
+        "ref": { "type": "string" }
+      },
+      "required": ["type", "ref"]
+    },
+    "NormalModel": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["normal"] },
+        "models": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      },
+      "required": ["type", "models"]
+    },
+    "ConditionModel": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["condition"] },
+        "when": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        },
+        "model": { "$ref": "#/definitions/Model" }
+      },
+      "required": ["type", "when", "model"]
+    },
+    "AllOfModel": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["allOf"] },
+        "models": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Model" },
+          "minItems": 1
+        }
+      },
+      "required": ["type", "models"]
+    },
+    "OneOfModel": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["oneOf"] },
+        "models": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Model" },
+          "minItems": 1
+        }
+      },
+      "required": ["type", "models"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "type": { "enum": ["root"] },
+    "model": { "$ref": "#/definitions/Model" },
+    "refs": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/Model" }
+    }
+  },
+  "additionalProperties": false,
+  "required": ["type", "model", "refs"]
+}

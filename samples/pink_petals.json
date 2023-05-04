@@ -1,0 +1,71 @@
+{
+  "type": "root",
+  "model": {
+    "type": "allOf",
+    "models": [
+      {
+        "type": "condition",
+        "when": { "facing": ["north"] },
+        "model": { "type": "ref", "ref": "rotation" },
+        "options": { "y": 0 }
+      },
+      {
+        "type": "condition",
+        "when": { "facing": ["east"] },
+        "model": { "type": "ref", "ref": "rotation" },
+        "options": { "y": 90 }
+      },
+      {
+        "type": "condition",
+        "when": { "facing": ["south"] },
+        "model": { "type": "ref", "ref": "rotation" },
+        "options": { "y": 180 }
+      },
+      {
+        "type": "condition",
+        "when": { "facing": ["west"] },
+        "model": { "type": "ref", "ref": "rotation" },
+        "options": { "y": 270 }
+      }
+    ]
+  },
+  "refs": {
+    "rotation": {
+      "type": "allOf",
+      "models": [
+        {
+          "type": "condition",
+          "when": { "flower_amount": ["1", "2", "3", "4"] },
+          "model": {
+            "type": "normal",
+            "models": ["minecraft:block/pink_petals_1"]
+          }
+        },
+        {
+          "type": "condition",
+          "when": { "flower_amount": ["2", "3", "4"] },
+          "model": {
+            "type": "normal",
+            "models": ["minecraft:block/pink_petals_2"]
+          }
+        },
+        {
+          "type": "condition",
+          "when": { "flower_amount": ["3", "4"] },
+          "model": {
+            "type": "normal",
+            "models": ["minecraft:block/pink_petals_3"]
+          }
+        },
+        {
+          "type": "condition",
+          "when": { "flower_amount": ["4"] },
+          "model": {
+            "type": "normal",
+            "models": ["minecraft:block/pink_petals_4"]
+          }
+        }
+      ]
+    }
+  }
+}
