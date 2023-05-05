@@ -52,12 +52,22 @@ const convertModel = (
   }
 
   if (input.type === "ref") {
-    return convertModel(refs[input.ref], { refs, options, condition });
+    return convertModel(refs[input.ref], {
+      refs,
+      options: mergeOptions(input.options ?? {}, options),
+      condition,
+    });
   }
 
   if (input.type === "allOf") {
     return input.models
-      .map((model) => convertModel(model, { refs, options, condition }))
+      .map((model) =>
+        convertModel(model, {
+          refs,
+          options: mergeOptions(input.options ?? {}, options),
+          condition,
+        })
+      )
       .flat();
   }
 
@@ -65,7 +75,13 @@ const convertModel = (
     return [
       {
         apply: input.models
-          .map((model) => convertModel(model, { refs, options, condition }))
+          .map((model) =>
+            convertModel(model, {
+              refs,
+              options: mergeOptions(input.options ?? {}, options),
+              condition,
+            })
+          )
           .flat()
           .map(({ apply }) => apply)
           .flat(),
