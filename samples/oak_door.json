@@ -1,0 +1,94 @@
+{
+  "type": "root",
+  "model": { "type": "ref", "ref": "tb" },
+  "refs": {
+    "tb": {
+      "type": "allOf",
+      "models": [
+        {
+          "type": "condition",
+          "when": { "half": ["lower"] },
+          "variables": { "%tb%": "bottom" },
+          "model": { "type": "ref", "ref": "hinge" }
+        },
+        {
+          "type": "condition",
+          "when": { "half": ["upper"] },
+          "variables": { "%tb%": "top" },
+          "model": { "type": "ref", "ref": "hinge" }
+        }
+      ]
+    },
+    "hinge": {
+      "type": "allOf",
+      "models": [
+        {
+          "type": "condition",
+          "when": { "hinge": ["left"] },
+          "options": { "y": { "type": "+", "value": 90 } },
+          "variables": { "%hinge%": "left" },
+          "model": { "type": "ref", "ref": "oc" }
+        },
+        {
+          "type": "condition",
+          "when": { "hinge": ["right"] },
+          "options": { "y": { "type": "+", "value": -90 } },
+          "variables": { "%hinge%": "right" },
+          "model": { "type": "ref", "ref": "oc" }
+        }
+      ]
+    },
+    "oc": {
+      "type": "allOf",
+      "models": [
+        {
+          "type": "condition",
+          "when": { "open": ["true"] },
+          "options": { "y": { "type": "*", "value": 1 } },
+          "variables": { "%oc%": "_open" },
+          "model": { "type": "ref", "ref": "facing" }
+        },
+        {
+          "type": "condition",
+          "when": { "open": ["false"] },
+          "options": { "y": { "type": "*", "value": 0 } },
+          "variables": { "%oc%": "" },
+          "model": { "type": "ref", "ref": "facing" }
+        }
+      ]
+    },
+    "facing": {
+      "type": "allOf",
+      "models": [
+        {
+          "type": "condition",
+          "when": { "facing": ["east"] },
+          "options": { "y": { "type": "+", "value": 0 } },
+          "model": { "type": "ref", "ref": "normal" }
+        },
+        {
+          "type": "condition",
+          "when": { "facing": ["south"] },
+          "options": { "y": { "type": "+", "value": 90 } },
+          "model": { "type": "ref", "ref": "normal" }
+        },
+        {
+          "type": "condition",
+          "when": { "facing": ["west"] },
+          "options": { "y": { "type": "+", "value": 180 } },
+          "model": { "type": "ref", "ref": "normal" }
+        },
+        {
+          "type": "condition",
+          "when": { "facing": ["north"] },
+          "options": { "y": { "type": "+", "value": 270 } },
+          "model": { "type": "ref", "ref": "normal" }
+        }
+      ]
+    },
+    "normal": {
+      "type": "normal",
+      "model": "minecraft:block/oak_door_%tb%_%hinge%%oc%"
+    }
+  }
+}

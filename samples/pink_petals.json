@@ -1,36 +1,37 @@
 {
   "type": "root",
+  "options": { "y": { "type": "+", "value": 90 } },
   "model": {
     "type": "allOf",
     "models": [
       {
         "type": "condition",
         "when": { "facing": ["north"] },
-        "model": { "type": "ref", "ref": "rotation" },
-        "options": { "y": 0 }
+        "options": { "y": { "type": "*", "value": 0 } },
+        "model": { "type": "ref", "ref": "flower_amount" }
       },
       {
         "type": "condition",
         "when": { "facing": ["east"] },
-        "model": { "type": "ref", "ref": "rotation" },
-        "options": { "y": 90 }
+        "options": { "y": { "type": "*", "value": 1 } },
+        "model": { "type": "ref", "ref": "flower_amount" }
       },
       {
         "type": "condition",
         "when": { "facing": ["south"] },
-        "model": { "type": "ref", "ref": "rotation" },
-        "options": { "y": 180 }
+        "options": { "y": { "type": "*", "value": 2 } },
+        "model": { "type": "ref", "ref": "flower_amount" }
       },
       {
         "type": "condition",
         "when": { "facing": ["west"] },
-        "model": { "type": "ref", "ref": "rotation" },
-        "options": { "y": 270 }
+        "options": { "y": { "type": "*", "value": 3 } },
+        "model": { "type": "ref", "ref": "flower_amount" }
       }
     ]
   },
   "refs": {
-    "rotation": {
+    "flower_amount": {
       "type": "allOf",
       "models": [
         {

@@ -1,0 +1,40 @@
+{
+  "type": "root",
+  "model": {
+    "type": "allOf",
+    "models": [
+      { "type": "normal", "model": "minecraft:block/oak_fence_post" },
+      {
+        "type": "condition",
+        "when": { "north": ["true"] },
+        "options": { "y": { "type": "+", "value": 0 } },
+        "model": { "type": "ref", "ref": "side" }
+      },
+      {
+        "type": "condition",
+        "when": { "east": ["true"] },
+        "options": { "y": { "type": "+", "value": 90 } },
+        "model": { "type": "ref", "ref": "side" }
+      },
+      {
+        "type": "condition",
+        "when": { "south": ["true"] },
+        "options": { "y": { "type": "+", "value": 180 } },
+        "model": { "type": "ref", "ref": "side" }
+      },
+      {
+        "type": "condition",
+        "when": { "west": ["true"] },
+        "options": { "y": { "type": "+", "value": 270 } },
+        "model": { "type": "ref", "ref": "side" }
+      }
+    ]
+  },
+  "refs": {
+    "side": {
+      "type": "normal",
+      "model": "minecraft:block/oak_fence_side",
+      "options": { "uvlock": true }
+    }
+  }
+}

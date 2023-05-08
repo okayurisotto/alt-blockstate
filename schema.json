@@ -14,18 +14,33 @@
         },
         {
           "type": "object",
-          "properties": { "options": { "$ref": "#/definitions/ModelOptions" } }
+          "properties": {
+            "options": { "$ref": "#/definitions/ModelOptions" },
+            "variables": { "$ref": "#/definitions/ModelVariables" }
+          }
         }
       ]
+    },
+    "Calculation": {
+      "type": "object",
+      "properties": {
+        "type": { "enum": ["+", "*"] },
+        "value": { "type": "number" }
+      },
+      "required": ["type", "value"]
     },
     "ModelOptions": {
       "type": "object",
       "properties": {
-        "x": { "enum": [0, 90, 180, 270] },
-        "y": { "enum": [0, 90, 180, 270] },
-        "z": { "enum": [0, 90, 180, 270] },
+        "x": { "$ref": "#/definitions/Calculation" },
+        "y": { "$ref": "#/definitions/Calculation" },
+        "z": { "$ref": "#/definitions/Calculation" },
         "uvlock": { "type": "boolean" }
       }
+    },
+    "ModelVariables": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
     },
     "RefModel": {
       "type": "object",
@@ -91,8 +106,9 @@
     "refs": {
       "type": "object",
       "additionalProperties": { "$ref": "#/definitions/Model" }
-    }
+    },
+    "options": { "$ref": "#/definitions/ModelOptions" },
+    "variables": { "$ref": "#/definitions/ModelVariables" }
   },
-  "additionalProperties": false,
   "required": ["type", "model", "refs"]
 }

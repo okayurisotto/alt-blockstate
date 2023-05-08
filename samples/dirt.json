@@ -1,29 +1,87 @@
 {
   "type": "root",
-  "model": {
-    "type": "oneOf",
-    "models": [
-      {
-        "type": "normal",
-        "model": "minecraft:block/dirt",
-        "options": { "y": 0 }
-      },
-      {
-        "type": "normal",
-        "model": "minecraft:block/dirt",
-        "options": { "y": 90 }
-      },
-      {
-        "type": "normal",
-        "model": "minecraft:block/dirt",
-        "options": { "y": 180 }
-      },
-      {
-        "type": "normal",
-        "model": "minecraft:block/dirt",
-        "options": { "y": 270 }
-      }
-    ]
+  "options": {
+    "x": { "type": "+", "value": 90 },
+    "y": { "type": "+", "value": 90 },
+    "z": { "type": "+", "value": 90 }
   },
-  "refs": {}
+  "model": { "type": "ref", "ref": "rotateX" },
+  "refs": {
+    "rotateX": {
+      "type": "oneOf",
+      "models": [
+        {
+          "type": "ref",
+          "ref": "rotateY",
+          "options": { "x": { "type": "*", "value": 0 } }
+        },
+        {
+          "type": "ref",
+          "ref": "rotateY",
+          "options": { "x": { "type": "*", "value": 1 } }
+        },
+        {
+          "type": "ref",
+          "ref": "rotateY",
+          "options": { "x": { "type": "*", "value": 2 } }
+        },
+        {
+          "type": "ref",
+          "ref": "rotateY",
+          "options": { "x": { "type": "*", "value": 3 } }
+        }
+      ]
+    },
+    "rotateY": {
+      "type": "oneOf",
+      "models": [
+        {
+          "type": "ref",
+          "ref": "rotateZ",
+          "options": { "y": { "type": "*", "value": 0 } }
+        },
+        {
+          "type": "ref",
+          "ref": "rotateZ",
+          "options": { "y": { "type": "*", "value": 1 } }
+        },
+        {
+          "type": "ref",
+          "ref": "rotateZ",
+          "options": { "y": { "type": "*", "value": 2 } }
+        },
+        {
+          "type": "ref",
+          "ref": "rotateZ",
+          "options": { "y": { "type": "*", "value": 3 } }
+        }
+      ]
+    },
+    "rotateZ": {
+      "type": "oneOf",
+      "models": [
+        {
+          "type": "ref",
+          "ref": "normal",
+          "options": { "z": { "type": "*", "value": 0 } }
+        },
+        {
+          "type": "ref",
+          "ref": "normal",
+          "options": { "z": { "type": "*", "value": 1 } }
+        },
+        {
+          "type": "ref",
+          "ref": "normal",
+          "options": { "z": { "type": "*", "value": 2 } }
+        },
+        {
+          "type": "ref",
+          "ref": "normal",
+          "options": { "z": { "type": "*", "value": 3 } }
+        }
+      ]
+    },
+    "normal": { "type": "normal", "model": "minecraft:block/dirt" }
+  }
 }

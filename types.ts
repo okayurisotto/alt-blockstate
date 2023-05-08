@@ -2,6 +2,9 @@ export type ModelRoot = {
   type: "root";
   model: Model;
   refs: ModelRefs;
+} & {
+  options?: ModelOptions;
+  variables?: ModelVariables;
 };
 
 export type ModelRefs = Record<string, Model>;
@@ -16,14 +19,22 @@ export type Model =
   )
   & {
     options?: ModelOptions;
+    variables?: ModelVariables;
   };
 
+export type ModelOptionCalculation = {
+  type: "+" | "*";
+  value: number;
+};
+
 export type ModelOptions = {
-  x?: number;
-  y?: number;
-  z?: number;
+  x?: ModelOptionCalculation;
+  y?: ModelOptionCalculation;
+  z?: ModelOptionCalculation;
   uvlock?: boolean;
 };
+
+export type ModelVariables = Record<string, string>;
 
 export type RefModel = {
   type: "ref";
@@ -59,9 +70,16 @@ export type ModelRoot_old = {
 
 export type Model_old = {
   apply:
-    | ({ model: string } & ModelOptions)
-    | ({ model: string } & ModelOptions)[];
+    | ({ model: string } & ModelOptions_old)
+    | ({ model: string } & ModelOptions_old)[];
   when?: ModelCondition_old;
+};
+
+export type ModelOptions_old = {
+  x?: number;
+  y?: number;
+  z?: number;
+  uvlock?: boolean;
 };
 
 export type ModelCondition_old = Record<string, string>;
